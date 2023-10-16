@@ -1,6 +1,20 @@
 import pygame
 import random
 
+class Button:
+
+    def __init__(self, x, y, width, height, text, color, text_color):
+        self.rect = pygame.Rect(x, y, width, height)
+        self.text = text
+        self.color = color
+        self.text_color = text_color
+        self.font = pygame.font.Font(None, 36)
+
+    def draw(self):
+        pygame.draw.rect(screen, self.color, self.rect)
+        text_surface = self.font.render(self.text, True, self.text_color)
+        text_rect = text_surface.get_rect(center=self.rect.center)
+        screen.blit(text_surface, text_rect)
 
 # Screen display config
 pygame.init()
@@ -114,6 +128,20 @@ def game_running():
             x_food, y_food = generate_food()
 
         clock.tick(game_speed)
+
+    # button_game_start(fim_jogo)
+
+
+# def button_game_start(fim_jogo): inserindo o botão
+
+#     if fim_jogo:
+#         botao_fim = Button(200, 200, 200, 50, "Reiniciar",  white, black)
+
+#         for event in pygame.event.get():
+#             if event.type == pygame.MOUSEBUTTONDOWN:
+#                 if event.button == 1:  # Verifica se o clique foi o botão esquerdo do mouse
+#                     if botao_fim.rect.collidepoint(event.pos):
+#                         return game_running()
 
 
 game_running()
